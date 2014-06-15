@@ -1,0 +1,16 @@
+markdown: rdiscount
+permalink: /:title/
+url: http://secbone.github.io
+name: Yonsm.NET
+author: Yonsm
+qq: 123018
+email: secbone@gmail.com
+duoshuo: yonsm
+beian: 
+cnzz: 119959
+weibo: 1885061391
+github: Secbone
+pygments: true
+safe: true
+paginate: 20
+about: "hello"
