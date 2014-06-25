@@ -1,0 +1,30 @@
+#!/bin/bash
+#
+#.md file set header like:
+#	---
+#	categories: XXX
+#	---
+#
+#auto add date,layout[post],title[file name],thread[thread file]
+#
+#untest windows
+#
+files=($(git diff --name-status --cached|awk '$1=="A" {print $2}'|grep -x '_posts/.*\.md'))
+len=${#files[@]}
+echo $len
+for file in ${files[@]};do
+	echo $file
+	num=$(cat thread)
+	num=$(expr 0$num + 1)
+	echo $num > thread
+	title=$(basename $file|cut -b 12-|cut -d. -f1|sed 's/-/ /g')
+	date=`date +"%Y-%m-%d %H:%M:%S"`
+	sed -i '2i\date: '"$date" $file
+	sed -i '3i\layout: post' $file
+	sed -i '4i\title: '"$title" $file
+	sed -i '5i\thread: '"$num" $file
+	git add $file
+done
+git add thread
+echo "Add Header: done!"
+exit 0
